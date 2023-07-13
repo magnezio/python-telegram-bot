@@ -1230,6 +1230,17 @@ officedocument.wordprocessingml.document")``.
                 return bool(message.web_app_data)
 
         web_app_data = _WebAppData()
+
+        class _ChatShared(MessageFilter):
+            __slots__ = ()
+            name = 'Filters.status_update.chat_shared'
+
+            def filter(self, message: Message) -> bool:
+                return bool(message.chat_shared)
+
+        chat_shared = _ChatShared()
+
+
         """Messages that contain :attr:`telegram.Message.web_app_data`."""
 
         name = 'Filters.status_update'
@@ -1256,6 +1267,7 @@ officedocument.wordprocessingml.document")``.
                 or self.video_chat_ended(message)
                 or self.video_chat_participants_invited(message)
                 or self.web_app_data(message)
+                or self.chat_shared(message)
             )
 
     status_update = _StatusUpdate()

@@ -59,6 +59,7 @@ from telegram import (
     VideoChatParticipantsInvited,
     WebAppData,
     VideoChatScheduled,
+    ChatShared
 )
 from telegram.utils.helpers import (
     escape_markdown,
@@ -585,6 +586,7 @@ class Message(TelegramObject):
         video_chat_ended: VideoChatEnded = None,
         video_chat_participants_invited: VideoChatParticipantsInvited = None,
         web_app_data: WebAppData = None,
+        chat_shared: ChatShared = None,
         **_kwargs: Any,
     ):
         if (
@@ -688,6 +690,7 @@ class Message(TelegramObject):
         self.voice_chat_participants_invited = temp3
         self.video_chat_participants_invited = temp3
         self.web_app_data = web_app_data
+        self.chat_shared = chat_shared
 
         self.bot = bot
 
@@ -779,6 +782,7 @@ class Message(TelegramObject):
             data.get('video_chat_participants_invited'), bot
         )
         data['web_app_data'] = WebAppData.de_json(data.get('web_app_data'), bot)
+        data['chat_shared'] = ChatShared.de_json(data.get('chat_shared'), bot)
 
         return cls(bot=bot, **data)
 

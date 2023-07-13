@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ #!/usr/bin/env python
 #
 # A library that provides a Python interface to the Telegram Bot API
 # Copyright (C) 2015-2022
@@ -20,7 +20,7 @@
 
 from typing import TYPE_CHECKING, Any, Optional
 
-from telegram import TelegramObject, KeyboardButtonPollType, WebAppInfo
+from telegram import TelegramObject, KeyboardButtonPollType, WebAppInfo, KeyboardButtonRequestChat
 from telegram.utils.types import JSONDict
 
 if TYPE_CHECKING:
@@ -77,6 +77,7 @@ class KeyboardButton(TelegramObject):
         'request_location',
         'request_contact',
         'request_poll',
+        'request_chat',
         'text',
         'web_app',
         '_id_attrs',
@@ -88,6 +89,7 @@ class KeyboardButton(TelegramObject):
         request_contact: bool = None,
         request_location: bool = None,
         request_poll: KeyboardButtonPollType = None,
+        request_chat: KeyboardButtonRequestChat = None,
         web_app: WebAppInfo = None,
         **_kwargs: Any,
     ):
@@ -97,6 +99,7 @@ class KeyboardButton(TelegramObject):
         self.request_contact = request_contact
         self.request_location = request_location
         self.request_poll = request_poll
+        self.request_chat = request_chat
         self.web_app = web_app
 
         self._id_attrs = (
@@ -104,6 +107,7 @@ class KeyboardButton(TelegramObject):
             self.request_contact,
             self.request_location,
             self.request_poll,
+            self.request_chat,
         )
 
     @classmethod
@@ -115,6 +119,7 @@ class KeyboardButton(TelegramObject):
             return None
 
         data['request_poll'] = KeyboardButtonPollType.de_json(data.get('request_poll'), bot)
+        data['request_chat'] = KeyboardButtonRequestChat.de_json(data.get('request_chat'), bot)
         data['web_app'] = WebAppInfo.de_json(data.get('web_app'), bot)
 
         return cls(**data)

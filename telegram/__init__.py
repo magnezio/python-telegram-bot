@@ -52,6 +52,7 @@ from .files.animation import Animation
 from .files.sticker import Sticker, StickerSet, MaskPosition
 from .files.video import Video
 from .files.contact import Contact
+from .files.chat_shared import ChatShared
 from .files.location import Location
 from .files.venue import Venue
 from .files.videonote import VideoNote
@@ -59,6 +60,7 @@ from .chataction import ChatAction
 from .dice import Dice
 from .userprofilephotos import UserProfilePhotos
 from .keyboardbuttonpolltype import KeyboardButtonPollType
+from .keyboardbuttonrequestchat import KeyboardButtonRequestChat
 from .keyboardbutton import KeyboardButton
 from .replymarkup import ReplyMarkup
 from .replykeyboardmarkup import ReplyKeyboardMarkup
@@ -221,6 +223,7 @@ __all__ = (  # Keep this alphabetically ordered
     'ChatPhoto',
     'ChosenInlineResult',
     'Contact',
+    'ChatShared',
     'Credentials',
     'DataCredentials',
     'Dice',
@@ -273,6 +276,7 @@ __all__ = (  # Keep this alphabetically ordered
     'Invoice',
     'KeyboardButton',
     'KeyboardButtonPollType',
+    'KeyboardButtonRequestChat',
     'LabeledPrice',
     'Location',
     'LoginUrl',
